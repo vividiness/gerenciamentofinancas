@@ -30,7 +30,7 @@ programa
 				"\nDigite o número para ir a opção"+
 				"\n1 - Registros {despesas e registros}"+
 				"\n2 - Visualizar resumo financeiro"+
-				"\n3 - Definir meta de orçaamento"+
+				"\n3 - Definir meta de orçamento"+
 				"\n4 - Analisar tendências financeira"+
 				"\n-------------------------------------------"
 	}
@@ -189,66 +189,83 @@ programa
 
 	//Verificando a Meta da [ALIMENTACAO]
 	funcao cadeia verificarMetaAlimentacao(){		
-		real menor_valor = dados_despesas[0]-meta_alimentacao
 
-		//se o valor negativo, é porque ultrapassou a meta.
-		se(menor_valor <0){
-			retorne "Ultrapassou a meta." 
-		}senao se (menor_valor == 0){
-			retorne "Atingiu a meta."
-		}senao se (menor_valor >= 5){
-			retorne "Faltam R$"+tp.real_para_cadeia(menor_valor)+ "para ultrapassar o valor da meta."
-		}senao{
-			retorne "funcao verificarMetaAlimentacao(): erro no cálculo do valor da meta."
+		se (dados_despesas[0] != 0.0){
+			real menor_valor = dados_despesas[0]-meta_alimentacao
+			
+			//se o valor negativo, é porque ultrapassou a meta.
+			se(menor_valor <0){
+				retorne "Ultrapassou a meta." 
+			}senao se (menor_valor == 0){
+				retorne "Atingiu a meta."
+			}senao se (menor_valor >= 5){
+				retorne "Faltam R$"+tp.real_para_cadeia(menor_valor)+ "para ultrapassar o valor da meta."
+			}senao{
+				retorne "funcao verificarMetaAlimentacao(): erro no cálculo do valor da meta."
+			}	
 		}
+		retorne "funcao verificarMetaAlimentacao(): não deveria estar aqui."
 	}
 
 	//Verificando a Meta da [TRANSPORTE]
-	funcao cadeia verificarMetaTransporte(){		
+	funcao cadeia verificarMetaTransporte(){	
+		se (dados_despesas[1] != 0.0){
 		real menor_valor = dados_despesas[1]-meta_transporte
 
 		//se o valor negativo, é porque ultrapassou a meta.
-		se(menor_valor <0){
+			se(menor_valor <0){
 			retorne "Ultrapassou a meta."
 		}senao se (menor_valor == 0){
-			retorne "Atingiu a meta."
-		}senao se (menor_valor >= 5){
-			retorne "Faltam R$"+tp.real_para_cadeia(menor_valor)+ "para ultrapassar o valor da meta."
-		}senao{
-			retorne "funcao verificarMetaTransporte(): erro "
+				retorne "Atingiu a meta."
+			}senao se (menor_valor >= 5){
+				retorne "Faltam R$"+tp.real_para_cadeia(menor_valor)+ "para ultrapassar o valor da meta."
+			}senao{
+				retorne "funcao verificarMetaTransporte(): erro no cálculo do valor da meta."
+			}
 		}
+
+		retorne "funcao verificarMetaTransporte(): não deveria estar aqui."
 	}
 
 	//Verificando a Meta da [MORADIA]
 	funcao cadeia verificarMetaMoradia(){		
+		se (dados_despesas[2] != 0.0){
 		real menor_valor = dados_despesas[2]-meta_moradia
 
 		//se o valor negativo, é porque ultrapassou a meta.
-		se(menor_valor <0){
+			se(menor_valor <0){
 			retorne "Ultrapassou a meta."
 		}senao se (menor_valor == 0){
-			retorne "Atingiu a meta."
-		}senao se (menor_valor >= 5){
-			retorne "Faltam R$"+tp.real_para_cadeia(menor_valor)+ "para ultrapassar o valor da meta."
-		}senao{
-			retorne "funcao verificarMetaMoradia(): erro "
+				retorne "Atingiu a meta."
+			}senao se (menor_valor >= 5){
+				retorne "Faltam R$"+tp.real_para_cadeia(menor_valor)+ "para ultrapassar o valor da meta."
+			}senao{
+				retorne "funcao verificarMetaMoradia():  erro no cálculo do valor da meta."
+			}
 		}
+
+		retorne "funcao verificarMetaMoradia): não deveria estar aqui."
 	}
 
 	//Verificando a Meta do [LAZER]
 	funcao cadeia verificarMetaLazer(){		
+		se (dados_despesas[3] != 0.0){
 		real menor_valor = dados_despesas[3]-meta_lazer
 
 		//se o valor negativo, é porque ultrapassou a meta.
-		se(menor_valor <0){
+			se(menor_valor <0){
 			retorne "Ultrapassou a meta."
 		}senao se (menor_valor == 0){
-			retorne "Atingiu a meta."
-		}senao se (menor_valor >= 5){
-			retorne "Faltam R$"+tp.real_para_cadeia(menor_valor)+ "para ultrapassar o valor da meta."
-		}senao{
-			retorne "funcao verificarMetaLazer(): erro "
+				retorne "Atingiu a meta."
+			}senao se (menor_valor >= 5){
+				retorne "Faltam R$"+tp.real_para_cadeia(menor_valor)+ "para ultrapassar o valor da meta."
+			}senao{
+				retorne "funcao verificarMetaLazer():  erro no cálculo do valor da meta."
+			}
 		}
+
+		retorne "funcao verificarMetaLazer(): não deveria estar aqui."
+	
 	}
 
 	//funções para definir metas
@@ -314,7 +331,7 @@ programa
 		leia(cat)
 		
 		se (cat == 1){
-			//mea pra alimentaﾃｧﾃ｣o
+			//mea pra alimentação
 			definirMeta_Categoria(1)
 			
 		}senao se (cat == 2){
@@ -434,8 +451,8 @@ programa
 				escreva("\nDespesas totais: R$", despesa_total)
 				escreva("\n---------------------------------------------------")
 				
-				escreva("\n\n--------- Extrato Bancﾃ｡rio por Categoria ----------")
-				escreva("\nGastos em [ALIMENTAﾃ�ﾃグ]: R$", dados_despesas[0])
+				escreva("\n\n--------- Extrato Bancário por Categoria ----------")
+				escreva("\nGastos em [ALIMENTAÇÃO]: R$", dados_despesas[0])
 				escreva("\nGastos em [TRANSPORTE]: R$", dados_despesas[1])
 				escreva("\nGastos em [MORADIA]: R$", dados_despesas[2])
 				escreva("\nGastos em [LAZER]: R$", dados_despesas[3])
@@ -445,7 +462,7 @@ programa
 		}
 
 		senao se(op == 3){
-			//TODO -> Definir Metas de Orﾃｧamento 
+			//TODO -> Definir Metas de Orçaamento 
 
 			enquanto(op != -3){
 				escreva("\n---------- Metas de Orçamento ----------")
@@ -525,9 +542,9 @@ programa
 			//Anﾃ｡lise de Tendﾃｪncia Financeira 
 
 			enquanto(op != -4){
-			escreva("\n---------- Anﾃ｡lise de Tendﾃｪncia Financeira --------")
+			escreva("\n---------- Análise de Tendência Financeira --------")
 			escreva("\n1 - Visualizar por categoria")
-			escreva("\n2 - Visualizaﾃｧﾃ｣o geral")
+			escreva("\n2 - Visualização geral")
 			escreva("\n -4 Sair \n=>")
 			leia(op)
 
@@ -535,39 +552,39 @@ programa
 
 			inteiro op_meta
 			
-			escreva("\nQual categoria deseja ver? \n1 - Alimentaﾃｧﾃ｣o \n2 - Transporte \n3 - Moradia \n4 - Lazer \n -4 Sair\n=>")
+			escreva("\nQual categoria deseja ver? \n1 - Alimentação \n2 - Transporte \n3 - Moradia \n4 - Lazer \n -4 Sair\n=>")
 			leia(op_meta)
 
 			se (op_meta == 1){
 			//alimentaﾃｧﾃ｣o
-				escreva("\n----------- TENDﾃ劾CIA FINANCEIRA DE ALIMENTAﾃ�ﾃグ -------------")
-				escreva("\nPorcentagem gasta na categoria [ALIMENTAﾃ�ﾃグ]: R$", porcentGastoAlimentacao())
+				escreva("\n----------- TENDÊNCIA FINANCEIRA DE ALIMENTAÇÃO -------------")
+				escreva("\nPorcentagem gasta na categoria [ALIMENTAÇÃO]: R$", porcentGastoAlimentacao())
 				escreva("\n------------------------------------------")	
 					 		
 			} senao se(op_meta == 2){
 			//transporte
-				escreva("\n----------- TENDﾃ劾CIA FINANCEIRA DE TRANSPORTE -------------")
+				escreva("\n----------- TENDÊNCIA FINANCEIRA DE TRANSPORTE -------------")
 				escreva("\nPorcentagem gasta na categoria [TRANSPORTE]: R$", porcentGastoTransporte())
 				escreva("\n------------------------------------------")	
 					 		
 			}senao se(op_meta == 3){
 			//moradia
-				escreva("\n----------- TENDﾃ劾CIA FINANCEIRA DE MORADIA -------------")
+				escreva("\n----------- TENDÊNCIA FINANCEIRA DE MORADIA -------------")
 				escreva("\nPorcentagem gasta na categoria [MORADIA]: R$", porcentGastoMoradia())
 				escreva("\n------------------------------------------")
 					 		
 					 		
 			}senao se(op_meta == 4){
 			//lazer
-				escreva("\n----------- TENDﾃ劾CIA FINANCEIRA DE LAZER -------------")
+				escreva("\n----------- TENDÊNCIA FINANCEIRA DE LAZER -------------")
 				escreva("\nPorcentagem gasta na categoria [LAZER]: R$", porcentGastoLazer())
 				escreva("\n------------------------------------------")	
 					 		
 			}senao se (op_meta == -4){
-				escreva("\nSaindo do menu de tedﾃｪncias por categoria...")		 		
+				escreva("\nSaindo do menu de tedências por categoria...")		 		
 			
 			}senao{
-				escreva("\nOpﾃｧﾃ｣o invﾃ｡lida!")
+				escreva("\nOpção inválida!")
 			}
 			
 						
@@ -575,20 +592,20 @@ programa
 				escreva(porcentagensDeGastos())
 				
 			}senao se (op == -4){
-				escreva("\nSaindo do menu de anﾃ｡lise de tendﾃｪncia financeira...")
+				escreva("\nSaindo do menu de análise de tendência financeira...")
 			}senao{
-				escreva("\nEssa opﾃｧﾃ｣o nﾃ｣o existe.")
+				escreva("\nEssa opção não existe.")
 			}
 			
 			}
 		}
 		senao se(op == -1){
-			//Saﾃｭda do cﾃｳdigo
-			escreva("Atﾃｩ a prﾃｳxima! ;)")
+			//Saída do código
+			escreva("Até a próxima! ;)")
 		}
 
 		senao{
-			escreva("\nOpﾃｧﾃ｣o nﾃ｣o existe.")
+			escreva("\nOpção não existe.")
 			limpa()
 		}
 	}
@@ -599,16 +616,3 @@ programa
 
 
 
-
-/* $$$ Portugol Studio $$$ 
- * 
- * Esta seção do arquivo guarda informações do Portugol Studio.
- * Você pode apagá-la se estiver utilizando outro editor.
- * 
- * @POSICAO-CURSOR = 9568; 
- * @DOBRAMENTO-CODIGO = [27, 55, 81, 108, 135, 37, 169, 183, 190, 210, 206, 222, 238, 254, 309, 337, 345, 353, 361, 369, 427, 449, 523, 584, 589, 383];
- * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = ;
- * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
- * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
- */
